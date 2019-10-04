@@ -15,9 +15,15 @@ pipeline {
 
 	        stage('Publish mertics to Sonarqube') {
 	            steps {
-	                sh "/opt/maven/bin/mvn clean package deploy sonar:sonar"
+	                sh "/opt/maven/bin/mvn clean package sonar:sonar"
 	            }
 	        }
+		    
+		stage('Deploy artifact to nexus') {
+	            steps {
+	                sh "/opt/maven/bin/mvn clean deploy sonar:sonar"
+	            }
+	        }    
 		
 		
 	        
