@@ -13,10 +13,20 @@ pipeline {
 
 	
 
-	        stage('maven_goals_and_options') {
+	        stage('Publish mertics to Sonarqube') {
 	            steps {
-	                sh "/opt/maven/bin/mvn clean deploy sonar:sonar"
+	                sh "/opt/maven/bin/mvn clean package sonar:sonar"
 	            }
+	        }
+		
+		stage('Nexus Artifacts Deploy') {
+
+	            steps {
+
+	                sh "/opt/maven/bin/mvn clean deploy"
+
+	            }
+
 	        }
 	        
 	        stage('deploy_war_file_to_tomcat_container') {
