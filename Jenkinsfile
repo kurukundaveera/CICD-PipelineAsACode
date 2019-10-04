@@ -23,7 +23,7 @@ pipeline {
 
 	            steps {
 
-	                sh "/opt/maven/bin/mvn clean deploy"
+	                sh "/opt/maven/bin/mvn clean package deploy"
 
 	            }
 
